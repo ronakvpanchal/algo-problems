@@ -3,33 +3,32 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-    let count = 0;
-    let maxCount = 0;
-    let hash = {};
-    if (s.length === 1 || s.length === 0) {
+    if (s.length <= 1) {
         return s.length;
-    }
-
-    for (let i = 0; i < s.length; i++) {
-        if (hash[s[i]] == undefined) {
-            hash[s[i]] = true;
-            count++;
-        } else {
-            hasDuplicates = true;
-            if (count > maxCount) {
-                maxCount = count;
+      }
+    
+      let longestString = "";
+      let str = "";
+      let hash = {};
+      for (let j = 0; j < s.length; j++) {
+        for (let i = j; i < s.length; i++) {
+          const ch = s[i];
+    
+          if (hash[ch] == undefined) {
+            hash[ch] = true;
+            str = str.concat(ch);
+          } else {
+            if (longestString.length < str.length) {
+              longestString = str;
             }
             hash = {};
-            count = 1;
-            hash[s[i]] = true;
+            str = "";
+            break;
+          }
         }
-    }
-
-    if (count > maxCount) {
-        maxCount = count;
-    }
-
-    return maxCount;
+      }
+    
+      return longestString;
 };
 
 lengthOfLongestSubstring("dvdf");
