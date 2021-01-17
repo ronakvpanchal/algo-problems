@@ -28,7 +28,7 @@ var lengthOfLongestSubstring = function (s) {
         }
       }
     
-      return longestString;
+      return longestString.length;
 };
 
 lengthOfLongestSubstring("dvdf");
